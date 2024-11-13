@@ -1,0 +1,560 @@
+@import url('https://fonts.googleapis.com/css2?family=Carrois+Gothic&family=Oswald:wght@200..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Sarpanch:wght@400;500;600;700;800;900&family=Unbounded:wght@200..900&display=swap');
+
+body {
+  font-family: 'Roboto';
+  background-color: black;
+  height: 1700px;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 160vh;
+  width: 1850px;
+}
+
+/* Верхняя панель с поиском */
+.search-bar-container {
+  padding: 15px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.logo{
+  flex: 1; /* Логотип занимает левую часть */
+  display: flex;
+  justify-content: flex-start; 
+}
+.search-controls {
+  flex: 2; /* Централизованный контент занимает больше пространства */
+  display: flex;
+  align-items: center;
+  justify-content: start  ; /* Поиск и кнопка выровнены по центру */
+  gap: 50px; 
+}
+
+.search-input {
+  background-color: #001173;
+  border: none;
+  border-radius: 20px;
+  padding: 10px;
+  width: 400px;
+  color: white;
+  font-size: 16px;
+  transition: width 0.3s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  width: 500px;
+}
+
+.search-input::placeholder {
+  color: #bbb;
+}
+
+.return-button {
+  cursor: pointer;
+  transition: 0.8s ease;
+  padding: 0;
+}
+
+
+.return-button:hover img {
+  transition: 0.8s ease;
+    content: url('./src/assets/home2.svg'); /* Меняем изображение при наведении */
+}
+
+.create-playlist-btn {
+  background-color: #ff4b68;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.main-content {
+  position: absolute;
+  background-color: #101035;
+  padding: 20px;
+  color: white;
+  height: 1380px;
+  max-width: 1890px;
+  width: 1505px;
+  display: flex;
+  flex-direction: column;
+  left: 18.5%;
+  margin-top: 10px;
+  border-radius: 15px;
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.categories-section {
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.scroll-button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 10px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+}
+
+.scroll-button.left {
+  left: 0;
+}
+
+.scroll-button.right {
+  right: 0;
+}
+
+.categories-title {
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  width: 100%;
+  height: 50px;
+  border-radius: 10px;
+  position: absolute;
+  background-color: #222;
+  z-index: 1;
+  top: -1%;
+  justify-content: flex-start;
+  padding-left: 20px;
+}
+
+.categories {
+  display: flex;
+  overflow-x: auto;
+  position: relative;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  gap: 10px;
+  padding: 10px;
+  margin: 0 30px;
+  margin-top: 120px;
+  margin-bottom: 40px;
+}
+
+.album {
+  position: relative;
+  display: inline-block;
+  margin: 10px;
+}
+.album h3, p{
+  margin: 0px;
+}
+
+.album-cover {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.album:hover .album-cover {
+  transform: scale(1.05);
+}
+
+/* Кнопка плеера */
+.play-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.album:hover .play-btn {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
+
+
+
+.player {
+  background-color: rgba(34, 34, 34);
+  padding: 10px 20px;
+  color: white;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+  z-index: 10;
+}
+.controls{
+  display: flex;
+
+}
+
+button{
+  background: none;
+  border: none;
+  border-color: none;
+}
+/*вот тут проблема не могу задать рандомный цвет*/
+.mood-genres button{
+  background-color: black;
+  border-left-color: var(--main-bg-color);
+}
+.mood-genres{
+
+  margin-bottom: 60px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  width: 600px;
+  height: 100px;
+  gap: 20px;
+  
+}
+.track-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.track-info img {
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+}
+
+.track-info p {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.player-controls {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.player-controls img {
+  width: 80px;
+  height: 80px;
+}
+
+.track-details {
+  width: 100px;
+}
+
+.player-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  color: white;
+  border-radius: 10px;
+  width: 70%;
+}
+
+.music-player {
+  display: flex;
+  width: 80%;
+  align-items: center;
+
+}
+
+
+.control button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.control {
+  display: flex;
+}
+
+.play-pause-button img {
+  width: 50px;
+  height: 50px;
+}
+
+.progress-bar-container {
+  flex-grow: 1;
+  margin: 0 20px;
+  cursor: pointer;
+}
+
+.progress-bar {
+  background-color: #3c4045;
+  height: 8px;
+  border-radius: 4px;
+  position: relative;
+}
+
+.progress {
+  background: #fc009b;
+  height: 100%;
+  border-radius: 4px;
+}
+
+
+.volume-control {
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+}
+
+.volume-control input[type="range"] {
+  height: 4px;
+  width: 100px;
+  background: #3c4045;
+  border-radius: 5px;
+  outline: none;
+}
+
+.volume-control input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 10px;
+  height: 10px;
+  background: #ff7a18;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.volume-control input[type="range"]::-moz-range-thumb {
+  width: 10px;
+  height: 10px;
+  background: #ff7a18;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.sidebar {
+  padding: 20px;
+  background-color: #4F0131;
+  color: #fff;
+  width: 300px;
+  position: absolute;
+  margin-top: 10px;
+  height: 1380px;
+  border-radius: 15px;
+  margin-left: 5px;
+}
+
+.sidebar h2 {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.create-playlist-container {
+  background-color: #4b174e;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.create-playlist-container h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.create-playlist-container p {
+  font-size: 14px;
+  color: #ddd;
+  margin-bottom: 15px;
+}
+
+.create-playlist-btn, .create-playlist-form button {
+  background-color: #ffffff;
+  color: #2c0a3a;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.create-playlist-form {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.playlist-page {
+  position: absolute;
+  background-color: #101035;
+  padding: 20px;
+  color: white;
+  height: 1380px;
+  max-width: 1890px;
+  width: 1505px;
+  display: flex;
+  flex-direction: column;
+  left: 18.5%;
+  border-radius: 15px;
+}
+
+.playlist-page h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.create-playlist-form input {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.playlists-list {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.playlist-card {
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  padding: 10px;
+  text-decoration: none;
+  color: white;
+  transition: background-color 0.3s;
+  background-color: #001173;
+}
+
+.playlist-card:hover {
+  background-color: #07004b;
+}
+
+.playlist-cover {
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.playlist-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.playlist-name {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.footer {
+  background-color: #0c1629;
+  color: #ffffff;
+  padding: 20px;
+  margin-top: 50px;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.footer-section {
+  flex: 1;
+  margin: 10px;
+}
+
+.footer-section h3 {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 8px;
+}
+
+.footer-section ul li a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.footer-section ul li a:hover {
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  border-top: 1px solid #394963;
+  padding-top: 20px;
+}
+
+.footer-bottom-links ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+}
+
+.footer-bottom-links ul li {
+  margin-right: 15px;
+}
+
+.footer-bottom-links ul li a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.footer-bottom-links ul li a:hover {
+  text-decoration: underline;
+}
+
+.footer-social a {
+  margin-left: 15px;
+}
+
+.footer-social img {
+  width: 24px;
+  height: 24px;
+}
