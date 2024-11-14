@@ -11,7 +11,7 @@ const MainContent = ({ searchResults, onTrackClick }) => {
           <h2>Search Results:</h2>
           <div className="track-list">
             {searchResults.map((album) => (
-              <div key={album.id}>
+              <div className='tracks-box' key={album.id}>
                 <h3>{album.title} - {album.artist}</h3>
                 <div className="tracks">
                   {album.tracks.map((track) => (
